@@ -1,44 +1,23 @@
 ---@alias color number[4]
 
----@class Obj
----@field public x integer
----@field public y integer
----@field public vx integer
----@field public vy integer
----@field public w integer
----@field public h integer
----@field public c color
-local Obj = {}
+local Obj = require("obj")
 
----@return Obj
-function Obj.new()
-	local obj = {
-		x = 0,
-		y = 0,
-		vx = 0,
-		vy = 0,
-		w = 0,
-		h = 0,
-		c = { 1, 1, 1, 1 },
-	}
-	setmetatable(obj, Obj)
-	return obj
-end
-
----@type color
 local bgc = { 0.2, 0.2, 0.2, 0.2 }
 
-function Obj:update()
-	self.x = self.x + self.vx
-	self.y = self.y + self.vy
-end
+local o = Obj.new()
+o.x = 100
+o.y = 100
+o.w = 50
+o.h = 50
+o.vx = 1
+o.vy = 1
 
-function Obj:draw()
-	love.graphics.setColor(self.c --[[@as table]])
-	love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
+function love.update()
+	o:update()
 end
 
 function love.draw()
 	love.graphics.print("Hello World", 400, 300)
 	love.graphics.setBackgroundColor(bgc --[[@as table]])
+	o:draw(0)
 end
