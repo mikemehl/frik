@@ -1,22 +1,10 @@
 ---@alias color number[4]
 
 local Obj = require("obj")
+local Input = require("input")
+local Player = require("player")
 
 local bgc = { 0.2, 0.2, 0.2, 0.2 }
-
----@class Player: Obj
-local Player = {}
-
-function Player.new()
-	local o = Obj.new()
-	o.x = 100
-	o.y = 100
-	o.w = 50
-	o.h = 50
-	o.vx = 1
-	o.vy = 1
-	return o
-end
 
 ---@class Enemy: Obj
 local Enemy = {}
@@ -35,6 +23,10 @@ end
 
 local p = Player.new()
 local e = Enemy.new()
+
+function love.load()
+	Input.init()
+end
 
 function love.update()
 	p:update()
