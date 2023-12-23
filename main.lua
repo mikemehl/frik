@@ -1,25 +1,11 @@
 ---@alias color number[4]
+---@alias err nil | string
 
-local Obj = require("obj")
 local Input = require("input")
 local Player = require("player")
+local Enemy = require("enemy")
 
 local bgc = { 0.2, 0.2, 0.2, 0.2 }
-
----@class Enemy: Obj
-local Enemy = {}
-
-function Enemy.new()
-	local o = Obj.new()
-	o.x = 50
-	o.y = 50
-	o.w = 10
-	o.h = 10
-	o.vx = 2
-	o.vy = 2
-	o.c = { 1.0, 0.0, 0.0, 1.0 }
-	return o
-end
 
 local p = Player.new()
 local e = Enemy.new()

@@ -17,7 +17,6 @@ function Player.new()
 end
 
 function Player:update()
-	print("update")
 	if Input.get().up then
 		self.vy = -10
 	elseif Input.get().down then
