@@ -8,6 +8,7 @@
       "love.filesystem.load": "loadfile"
     },
     "workspace.library": [
-      "${3rd}/love2d/library"
+      "${3rd}/love2d/library",
+      "batteries"
     ]
   }

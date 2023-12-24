@@ -1,5 +1,6 @@
 local Obj = require("obj")
-local msg = require("msg")
+local pubsub = require("batteries.pubsub")
+local vec = require("batteries.vec2")
 
 ---@class Enemy: Obj
 local Enemy = {}
@@ -13,9 +14,12 @@ function Enemy.new()
 	o.vx = 2
 	o.vy = 2
 	o.c = { 1.0, 0.0, 0.0, 1.0 }
-	msg.sub("player:pos", function(data)
-		o.x = data.x
-		o.y = data.y
+	pubsub:subscribe("player:moved", function(px, py)
+		vec:new(px - o.x, py - o.y)
+		vec:scalar_add_inplace(o.vx, o.vy)
+		local norm = vec:normalize_inplace()
+		o.vx = norm.x
+		o.vy = norm.y
 	end)
 	return o
 end

@@ -1,6 +1,6 @@
 local Obj = require("obj")
 local Input = require("input")
-local msg = require("msg")
+local pubsub = require("batteries.pubsub")
 
 ---@class Player: Obj
 local Player = Obj.new()
@@ -26,7 +26,7 @@ function Player:update()
 		self.vy = 0
 	end
 	Obj.update(self)
-	msg.pub("player:pos", { x = self.x, y = self.y })
+	pubsub:publish("player:moved", self.x, self.y)
 end
 
 return Player

@@ -5,20 +5,19 @@ local Obj = require("obj")
 local Input = require("input")
 local Player = require("player")
 local Enemy = require("enemy")
-local msg = require("msg")
+local pubsub = require("batteries.pubsub")
 
 local bgc = { 0.2, 0.2, 0.2, 0.2 }
 
-local p = Player.new()
-local e = Enemy.new()
-
 function love.load()
+	pubsub:new()
 	Input.init()
+	Player.new()
+	Enemy.new()
 end
 
 function love.update()
 	Obj.updateAll()
-	msg.dispatch()
 end
 
 function love.draw()
