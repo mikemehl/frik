@@ -1,4 +1,5 @@
 local Obj = require("obj")
+local msg = require("msg")
 
 ---@class Enemy: Obj
 local Enemy = {}
@@ -12,6 +13,10 @@ function Enemy.new()
 	o.vx = 2
 	o.vy = 2
 	o.c = { 1.0, 0.0, 0.0, 1.0 }
+	msg.sub("player:pos", function(data)
+		o.x = data.x
+		o.y = data.y
+	end)
 	return o
 end
 

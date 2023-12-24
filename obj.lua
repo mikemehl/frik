@@ -8,7 +8,9 @@
 ---@field public c color
 ---@field public hp integer
 ---@field public new function(): Obj
-local Obj = {}
+local Obj = {
+	__objs = {},
+}
 
 function Obj.new()
 	local o = {
@@ -22,7 +24,20 @@ function Obj.new()
 		hp = 100,
 	}
 	setmetatable(o, { __index = Obj })
+	table.insert(Obj.__objs, o)
 	return o
+end
+
+function Obj.updateAll()
+	for _, o in pairs(Obj.__objs) do
+		o:update()
+	end
+end
+
+function Obj.drawAll()
+	for _, o in pairs(Obj.__objs) do
+		o:draw()
+	end
 end
 
 function Obj:update()
