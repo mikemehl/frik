@@ -19,11 +19,16 @@ end
 
 function Player:update()
 	if Input.get().up then
-		self.vy = -10
+		self.vy = -5
 	elseif Input.get().down then
-		self.vy = 10
+		self.vy = 5
+	elseif Input.get().left then
+		self.vx = -5
+	elseif Input.get().right then
+		self.vx = 5
 	else
 		self.vy = 0
+		self.vx = 0
 	end
 	Obj.update(self)
 	pubsub:publish("player:moved", self.x, self.y)

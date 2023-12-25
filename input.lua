@@ -6,6 +6,7 @@ local Input = { up = false, down = false, left = false, right = false }
 
 ---@param key love.KeyConstant
 function M.keydown(key)
+	print(key)
 	if key == "up" then
 		Input.up = true
 	elseif key == "down" then
